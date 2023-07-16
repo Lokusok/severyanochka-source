@@ -1,0 +1,1466 @@
+@use 'vars' as vars;
+@use 'mixins' as mixins;
+@use 'fonts' as fonts;
+
+
+input[type="password"] {
+  font-family: "asterisk", "Rubik", Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 8px 65px 8px 12px;
+}
+
+.pattern {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+.top-title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .top-title {
+    @include mixins.defaultTitle();
+  }
+
+  .top-more {
+    text-decoration: none;
+    color: #606060;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    &__icon {
+      margin: 0 0 0 30px;
+    }
+
+    &:focus {
+      outline: 3px dotted vars.$color-accent-1;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 860px) {
+    margin: 19px 0 0 0 !important;
+  }
+}
+
+.top-content {
+  padding: 24px 0 0 0;
+
+  &__title-block {
+    cursor: default;
+    margin: 24px 0 0 0;
+  }
+}
+
+// Основная навигация
+.main-nav {
+  &__list {
+    display: flex;
+    list-style: none;
+  }
+
+  &-item {
+    min-height: 50px;
+    position: relative;
+
+    &:not(:last-child) {
+      margin: 0 24px 0 0;
+    }
+
+    &__icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.active {
+      .main-nav-item__text {
+        color: vars.$color-accent-1;
+      }
+
+      svg path {
+        fill: vars.$color-accent-1;
+      }
+    }
+
+    &__link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #000;
+
+      &:hover {
+        .main-nav-item__text {
+          color: vars.$color-accent-1;
+        }
+      }
+
+      &:focus {
+        outline: 2px dotted vars.$color-accent-1;
+      }
+    }
+
+    &__text {
+      margin: 8px 0 0 0;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      text-align: center;
+      transition: color ease .2s;
+    }
+
+    &__count {
+      position: absolute;
+      right: 15px;
+      top: -3px;
+      background: vars.$color-accent-1;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 11px;
+      height: 11px;
+      font-size: 10px;
+      border-radius: 4px;
+
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &__text {
+        font-weight: 400;
+        font-size: 8px;
+        line-height: 12px;
+      }
+
+      &__count {
+        right: 6px;
+        top: 0;
+      }
+    }
+  }
+}
+
+// Профиль пользователя
+.profile {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: vars.$color-text;
+  transition: opacity ease .2s;
+  border-radius: 4px 4px 0 0;
+  
+  &.unlogined {
+    padding: 0 30px;
+  }
+
+  &:focus {
+    outline: 2px dotted vars.$color-accent-1;
+  }
+
+  &:hover {
+    .profile-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .profile__arrow-down {
+      transform: rotate(180deg);
+    }
+  }
+  
+  // &:hover {
+  //   opacity: .6;
+  // }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &__avatar { 
+    margin: 0 10px 0 0;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &__arrow-down {
+    margin: 0 0 0 20px;
+    outline: none;
+    transition: transform ease .2s;
+  }
+
+  // Кнопка входа в аккаунт
+  .login-btn {
+    background: vars.$color-accent-1;
+    border: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    min-width: 157px;
+    min-height: 40px;
+    border-radius: 4px;
+    transition: background ease .2s, color ease .2s, transform ease .2s;
+
+    svg path {
+      transition: fill ease .2s;
+    }
+
+    &:focus {
+      outline: 3px dotted vars.$color-accent-1;
+    }
+
+    &:active {
+      transform: scale(.95);
+    }
+
+    &:hover {
+      color: vars.$color-accent-1;
+      background: vars.$color-accent-4;
+
+      svg path { fill: vars.$color-accent-1; }
+    }
+
+    &__text {
+      flex-basis: 70%;
+    }
+  }
+
+  // Выпадающее меню
+  .profile-menu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-width: 210px;
+    background: #fff;
+    transform: translate(0, 100%);
+    list-style: none;
+    padding: 8.5px 0;
+    border-radius: 0 0 4px 4px;
+    transition: opacity ease .2s, visibility ease .2s;
+    box-shadow: 0px 25px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+
+    &__item {
+      display: flex;
+    }
+
+    &__link {
+      flex-grow: 1;
+      text-decoration: none;
+      color: vars.$color-text;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 32px;
+      position: relative;
+      padding: 7.5px 30px;
+      transition: color ease .2s, transform ease .2s;
+
+      svg path {
+        transition: fill ease .2s;
+      }
+
+      &:focus {
+        outline: 3px dotted vars.$color-accent-1;
+        color: vars.$color-accent-1;
+      }
+
+      &:hover {
+        color: vars.$color-accent-1;
+
+        svg path {
+          fill: vars.$color-accent-1;
+        }
+      }
+
+      &:active {
+        transform: scale(.9);
+      }
+    }
+
+    &__arrow-down {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  @media (max-width: 985px) {
+    &.unlogined { padding: 0; }
+    &__avatar { margin: 0 !important; }
+
+    &__name,
+    &__arrow-down {
+      display: none;
+    }
+
+    .login-btn {
+      min-width: 40px;
+      min-height: 40px;
+
+      &__text {
+        display: none;
+      }
+    }
+
+    .profile-menu {
+      transform: translate(-90%, 105%);
+
+      &__link {
+        font-size: 16px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    .profile-menu {
+      transform: translate(0, -100%);
+      bottom: auto;
+      box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
+      top: 0;
+      left: 50%;
+      transform: translate(-40%, -100%);
+      border-radius: 4px 4px 0 0;
+
+      &__link {
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+// Карточка товара
+.shop-card {
+  min-height: 350px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow ease .3s;
+  position: relative;
+
+  &.hidden { display: none !important; }
+
+  .to-basket-btn {
+    padding: 10px 0;
+    background: transparent;
+    border: 1px solid vars.$color-accent-2;
+    border-radius: 4px;
+    cursor: pointer;
+    color: vars.$color-accent-2;
+    transition: background ease .2s,
+                color ease .2s,
+                border-color ease .1s,
+                transform ease .2s;
+
+    &:active {
+      transform: scale(.9);
+    }
+
+    &:focus {
+      outline: none;
+      @include mixins.hoverOnBasketBtn();
+    }
+
+    &:hover {
+      @include mixins.hoverOnBasketBtn();
+    }
+  }
+
+  &.in-basket {
+    box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2);
+
+    .to-basket-btn {
+      // @include mixins.hoverOnBasketBtn();
+
+      // &:focus { outline: 3px dotted vars.$color-accent-1; }
+      display: none;
+    }
+
+    .manipulate-with-basket {
+      display: flex;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: vars.$color-text;
+    flex-grow: 1;
+    transition: opacity ease .2s;
+    display: flex;
+    flex-direction: column;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: .7;
+
+      .shop-card__image img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 0 0;
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+      min-height: 145px;
+      object-fit: cover;
+      transition: transform ease .2s;
+    }
+  }
+
+  // Кнопка добавления в избранное
+  .to-favourite {
+    cursor: pointer;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 5px 6px;
+    background: rgba(#F3F2F1, .5);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background ease .2s, transform ease .2s;
+    border: none;
+    
+    &:focus {
+      @include mixins.hoverOnFavouriteBtn(.1);
+      // outline: 2px dotted vars.$color-accent-1;
+      outline: none;
+    }
+
+    &:active {
+      transform: scale(.9);
+
+      svg {
+        transform: scale(.7);
+      }
+    }
+
+    &.active {
+      // background: none;
+      background: rgba(vars.$color-accent-1, .7);
+
+      svg path { fill: #fff; }
+    }
+    
+    &.active:hover {
+      // @include mixins.hoverOnFavouriteBtn(1);
+      background: rgba(vars.$color-accent-1, .4);
+  
+      svg path { fill: #fff; }
+    }
+
+    &__icon {
+      transition: transform ease .2s;
+
+      path {
+        transition: fill ease .2s;
+      }
+    }
+
+    &:hover {
+      @include mixins.hoverOnFavouriteBtn(.5);
+    }
+  }
+
+  &__content {
+    padding: 8px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__discount {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+
+    .price {
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      line-height: 27px;
+
+      &.small-price {
+        font-weight: 700;
+      }
+    }
+
+    .price__text {
+      color: #BFBFBF;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  &__bottom {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    justify-content: flex-end;
+  }
+
+  &__about {
+    margin: 8px 0 0 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    // flex-grow: 1;
+  }
+
+  &__raiting {
+    margin: 8px 0;
+  }
+
+  @media (max-width: 550px) {
+    .price {
+      font-size: 14px;
+      line-height: 21px;
+
+      &__text {
+        font-size: 8px;
+        line-height: 12px;
+      }
+    }
+
+    &__about {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .to-basket-btn {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 8px 0;
+    }
+
+    .manipulate-with-basket {
+      padding: 8px 12px;
+    }
+  }
+}
+
+// Манипуляция с корзиной при товаре
+.manipulate-with-basket {
+  display: none;
+  // display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 0 0;
+  padding: 7px 12px;
+  background: vars.$color-accent-2;
+  border-radius: 4px;
+  color: #fff;
+
+  &__decrease,
+  &__update {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: currentColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform ease .2s;
+
+    svg path { stroke: currentColor; transition: stroke ease .2s, opacity ease .2s; }
+
+    &:active svg path {
+      opacity: .5;
+    }
+
+    &:focus {
+      // outline: none;
+    }
+
+    &:hover {
+      svg path { stroke: vars.$color-accent-4; }
+    }
+  }
+
+  &__count {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: default;
+  }
+}
+
+// Хлебные крошки
+.bread-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+
+  .link-block {
+    display: flex;
+    align-items: center;
+
+    &__link {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: vars.$color-text;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:last-child a {
+      color: #8F8F8F;
+      cursor: default;
+
+      &:focus {
+        outline-color: #606060;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &__arrow {
+      margin: 0 24.5px;
+    }
+  }
+
+}
+
+// Рейтинг товара (звёздочки)
+.raiting {
+  display: flex;
+
+  .star {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    path {
+      width: 14px;
+      height: 14px;
+    }
+
+    &:not(:first-child) {
+      margin: 0 0 0 4px;
+    }
+
+    &-filled path {
+      fill: vars.$color-accent-1;
+    }
+  }
+}
+
+// Список уже применённых к поиску фильтров
+.accepted-filters {
+  list-style: none;
+  display: flex;
+
+  &__item {
+    margin: 0 24px 0 0;
+  }
+
+  .accepted-filter {
+    @include mixins.greyAdvantage();
+    padding: 5px 8px 5px 24px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background ease .2s, color ease .2s, transform ease .2s;
+
+    &__close-icon {
+      margin: 0 0 0 13.5px;
+      path { transition: fill ease .2s; }
+    }
+
+    &:focus {
+      outline: 2px dotted vars.$color-accent-2;
+    }
+
+    &:active {
+      transform: scale(.95);
+    }
+
+    &.active {
+      opacity: 1;
+      background: vars.$color-accent-2;
+      color: #fff;
+
+      path { fill: #fff; }
+
+      &:hover { opacity: 1; }
+    }
+
+    &:hover {
+      opacity: .7;
+      background: vars.$color-accent-2;
+      color: #fff;
+
+      path { fill: #fff; }
+    }
+  }
+}
+
+// Пагинация
+.pagination {
+  &__row {
+    padding: 50px 0 0 0;
+  }
+
+  &-list {
+    list-style: none;
+    display: flex;
+
+    &__item:not(:first-child) {
+      margin: 0 0 0 24px;
+    }
+
+    &__link {
+      padding: 4px 8px;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #606060;
+      position: relative;
+
+      &.active {
+        color: vars.$color-accent-1;
+      }
+      
+      &:hover {
+        outline: 2px dotted vars.$color-accent-1;
+      }
+    }
+
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  // Элементы "вперёд-назад"
+  &__back-block {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -40%);
+    display: flex;
+    align-items: center;
+    width: 50px;
+    justify-content: space-between;
+
+    .pagination__back,
+    .pagination__doubleback {
+      cursor: pointer;
+
+      svg path { transition: fill ease .1s; }
+
+      &:hover svg path { fill: vars.$color-accent-1; }
+    }
+    
+    &-left {
+      left: -80px;
+    }
+
+    &-right {
+      right: -80px;
+    }
+  }
+
+  @media (max-width: 510px) {
+    &-list__item:nth-child(n+5) {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    &-list__item:nth-child(n+3) {
+      display: none;
+    }
+  }
+}
+
+// Стилизация чекбокса (выглядит как radio-button)
+.checkbox-radio-block {
+  display: flex;
+  align-items: center;
+
+  &__checkbox-radio-input {
+    opacity: 0;
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+  }
+
+  &__checkbox-radio-input:checked ~ .custom-checkbox-radio {
+    background: vars.$color-accent-2;
+
+    .custom-checkbox-radio__circle {
+        transform: translate(20px, 0);
+    }
+  }
+
+  &__checkbox-radio-input:focus ~ .custom-checkbox-radio {
+    border: 2px dotted vars.$color-accent-2;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-checkbox-radio {
+    width: 46px;
+    height: 24px;
+    background: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    border-radius: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background ease .2s;
+
+    &__row {
+      padding: 2px;
+      position: relative;
+      display: flex;
+    }
+
+    &__circle {
+      display: block;
+      width: 20px;
+      height: 20px;
+      transform: translate(0);
+      transition: transform ease .2s;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.08);
+      border: 0.5px solid rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &__text {
+    margin: 0 0 0 10px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+// Стилизация чекбокса (выглядит как checkbox)
+.block-checkbox {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+
+  &__text {
+    margin: 0 0 0 8px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #BFBFBF;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: url(../images/check-mark.svg) center / cover no-repeat;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked ~ .custom-checkbox {
+      background: vars.$color-accent-2;
+      border-color: #F3F2F1;
+    }
+
+    &:checked ~ .custom-checkbox::before {
+      display: block;
+    }
+  }
+}
+
+// Стилизация выпадающего списка (<select>)
+.choices {
+  &::after {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    background: url(../images/arrow-down.svg) center / cover no-repeat;
+    width: 16px;
+    height: 13px;
+    display: block;
+    position: absolute;
+    right: 19px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &.is-open::before {
+    top: 35%;
+    transform: rotate(180deg);
+  }
+
+  &__list--dropdown {
+    border: none;
+    box-shadow: 4px 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+  }
+
+  &__inner {
+    background: #fff;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  &__item {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: vars.$color-text;
+  }
+}
+
+// Общие стили для всех попапов
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(#FCD5BA, .8);
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity ease .3s, visibility ease .3s;
+  opacity: 0;
+  visibility: hidden;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__row {
+    position: relative;
+    min-width: 420px;
+    min-height: 420px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 8px 16px 32px rgba(255, 102, 51, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 40px;
+    min-height: 40px;
+    background: #F3F2F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background ease .3s, opacity ease .1s;
+    border: none;
+
+    svg path {
+      transition: fill ease .3s;
+    }
+
+    &:focus {
+      outline: 3px dotted vars.$color-accent-1;
+    }
+
+    &:active {
+      opacity: .6;
+    }
+
+    &:hover {
+      background: vars.$color-accent-1;
+
+      svg path {
+        fill: #fff;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    cursor: default;
+  }
+
+  &__form {
+    margin: 30px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    caret-color: vars.$color-accent-2;
+    min-width: 305px;
+    
+    &-field {
+      border: none;
+
+      &-title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 27px;
+        margin: 0 0 24px 0;
+      }
+    }
+
+    &-label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-label-text {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 27px;
+      color: #8F8F8F;
+    }
+
+    &-input-block {
+      position: relative;
+
+      .set-visible-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: opacity ease .2s;
+
+        svg path { transition: fill ease .2s; }
+
+        &:active {
+          opacity: .5;
+        }
+
+        &:hover svg path {
+          fill: vars.$color-accent-1;
+        }
+      }
+
+      .popup__form-input-icon {
+        @extend .set-visible-password;
+        cursor: default;
+
+        &:active { opacity: 1; }
+        &:hover svg path { fill: initial; }
+      }
+    }
+
+    &-input {
+      width: 100%;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 36px;
+      color: vars.$color-text;
+      border: 2px solid #BFBFBF;
+      outline: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      transition: box-shadow ease .2s, border-color ease .2s;
+      
+      &:focus {
+        border-color: vars.$color-accent-2;
+        box-shadow: 4px 8px 16px rgba(112, 192, 91, 0.2);
+      }
+
+      &[disabled] {
+        background: #F3F2F1;
+      }
+    }
+
+    &-input[type="password"] ~ button .hidden-now { display: block; }
+    &-input[type="password"] ~ button .visible-now { display: none; }
+
+    &-input[type="text"] ~ button .hidden-now { display: none; }
+    &-input[type="text"] ~ button .visible-now { display: block; }
+  }
+
+  &__ways {
+    margin: 32px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    &-btn {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      min-width: 120px;
+      min-height: 32px;
+      text-decoration: none;
+      color: #606060;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &-icon {
+        margin: 0 8px 0 0;
+      }
+    }
+
+    .green-bordered-btn {
+      background: none;
+      border-radius: 4px;
+      border: 2px solid vars.$color-accent-2;
+      color: vars.$color-accent-2;
+      position: relative;
+      z-index: 10;
+      transition: color ease .2s;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:focus {
+        outline: 2px dotted vars.$color-accent-2;
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+
+        &::after {
+          transform: translate(0, 0);
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        background: vars.$color-accent-2;
+        z-index: -1;
+        transition: transform ease .3s;
+        transform: translate(0, 100%);
+      }
+    }
+
+    // Кнопка для возврата назад
+    .step-back {
+      display: none;
+    }
+  }
+}
+
+// Стили для переключателя радио-кнопок (например: выбор пола в форме регистрации)
+.radio-switcher {
+  position: relative;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    background: vars.$color-accent-5;
+    border-radius: 4px;
+    margin: 0 -5px;
+  }
+  
+  input {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+
+    &[value="male"] { left: 0; }
+    &[value="female"] { right: 0; }
+  }
+
+  &__value {
+    margin: 0 5px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 8px 4px;
+    border-radius: 4px;
+    flex-basis: 50%;
+    text-align: center;
+    color: vars.$color-text;
+    transition: background ease .2s, color ease .2s;
+
+    &.active {
+      background: vars.$color-accent-2;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  &.sex-switcher {
+    input[value="male"]:checked ~ .radio-switcher__row .male-value {
+      background: vars.$color-accent-2;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input[value="female"]:checked ~ .radio-switcher__row .female-value {
+      background: vars.$color-accent-2;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+// Стилизация календаря
+.xcalend {
+  thead {
+    .cal-l,
+    .cal-r {
+      border-radius: 50%;
+    }
+
+    td:hover {
+      background: vars.$color-accent-1;
+      color: #fff;
+    }
+  }
+
+  tbody {
+    td {
+      border-radius: 50%;
+      color: #8F8F8F;
+    }
+
+    td:hover {
+      color: #fff !important;
+      background: rgba(vars.$color-accent-1, .7);
+    }
+    
+    td.today {
+      color: #fff !important;
+      background: vars.$color-accent-1;
+    }
+    
+    td.today:hover {
+      background: vars.$color-accent-1;
+    }
+
+    .cal-l {
+      border-radius: 4px;
+    }
+  }
+
+  tfoot {
+    td:hover {
+      background: vars.$color-accent-1;
+      color: #fff;
+    }
+  }
+}
+
+.star {
+  &.star-filled path {
+    fill: vars.$color-accent-1;
+  }
+}
+.stars-line {
+  display: flex;
+  align-items: center;
+  margin: 0 -4px;
+  
+  .star { margin: 0 2px; }
+}
+
+.orange-btn {
+  background: vars.$color-accent-4;
+  border: none;
+  color: vars.$color-accent-1;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 36px;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 4px;
+  transition: background ease .2s, color ease .2s, transform ease .1s;
+  white-space: nowrap;
+
+  &:focus {
+    outline: 2px dotted vars.$color-accent-1;
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+
+  &:hover {
+    color: #fff;
+    background: vars.$color-accent-1;
+  }
+}
+
+// Примечание под кнопками
+.basket-notice {
+  color: vars.$color-accent-2;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+    margin: 0 8px 0 0;
+  }
+
+  b {
+    font-weight: 700;
+  }
+}
+
+// Скидка
+.product-discount {
+  background: vars.$color-accent-1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+// Телефон
+.telephone {
+  display: flex;
+  align-items: center;
+  color: vars.$color-text;
+  transition: color ease .2s, transform ease .1s;
+  
+  &__icon {
+    margin: 0 10px 0 0;
+
+    path {
+      transition: fill ease .2s;
+    }
+  }
+
+  &__number {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    color: vars.$color-accent-1 !important;
+
+    svg path { fill: vars.$color-accent-1; }
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+}

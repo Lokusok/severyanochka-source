@@ -1,0 +1,85 @@
+block variables
+  -
+    var pageTitle = 'Северяночка'
+    var logoIsIndexLink = true
+
+block userVar
+  -
+    var user = {
+      login: false
+    }
+
+block activeNavVar
+  -
+    var active = {
+      catalog: false,
+      favourites: false,
+      orders: false,
+      basket: false
+    }
+
+block activeFooterNavVar
+  -
+    var activeFooter = {
+      about: false,
+      contacts: false,
+      jobs: false,
+      articles: false,
+      personalData: false
+    }
+
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="описание магазина")
+    meta(name="keywords" content="ключевое-слово-1, ключевое-слово-2")
+    title #{pageTitle}
+
+    link(rel="preload" href="./fonts/Rubik-Bold.woff2" as="font")
+    link(rel="preload" href="./fonts/Rubik-Regular.woff2" as="font")
+
+    link(rel="shortcut icon" href="./images/favicon.ico")
+
+    link(rel="stylesheet" href="./css/nouislider.min.css")
+    link(rel="stylesheet" href="./css/choices.min.css")
+    link(rel="stylesheet" href="./css/xcal.css")
+    link(rel="stylesheet" href="./css/swiper-bundle.min.css")
+    link(rel="stylesheet" href="./css/panzoom.min.css")
+    link(rel="stylesheet" href="./css/style.min.css")
+
+    script(defer src="https://api-maps.yandex.ru/2.1/?apikey=8a668916-04d0-4f25-8d4a-b97888776387&lang=ru_RU")
+
+    //- for input's mask
+    script(defer src="./js/inputmask.min.js")
+
+    //- for custom range input
+    script(defer src="./js/nouislider.min.js")
+
+    //- for custom <select>
+    script(defer src="./js/choices.min.js")
+
+    //- for custom <date> (calendar)
+    script(defer src="./js/xcal.js")
+
+    //- for sliders
+    script(defer src="./js/swiper-bundle.min.js")
+
+    //- for image zoom
+    script(defer src="./js/panzoom.min.js")
+
+    script(defer src="./js/main.js")
+  body
+    include mobile-menu
+    include header
+
+    block content
+
+    include footer
+
+    //- Попапы для входа в аккаунт, регистрации на сайте
+    include popup-login
+    include popup-register

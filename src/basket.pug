@@ -1,0 +1,224 @@
+extends includes/base
+
+block variables
+  -
+    var pageTitle = 'Корзина | Северяночка'
+    var logoIsIndexLink = true
+
+block userVar
+  -
+    var user = {
+      login: true
+    }
+
+block activeNavVar
+  -
+    var active = {
+      catalog: false,
+      favourites: false,
+      orders: false,
+      basket: true
+    }
+
+
+block content
+  main.main
+    section.basket
+      .container.basket__container
+        .basket__row
+          .top-content
+            ul.top-content__bread-crumbs.bread-crumbs
+              li.bread-crumbs__link-block.link-block
+                a.link-block__link(href="./index.html") Главная
+                .link-block__arrow
+                  <svg class="bread-crumbs__link-arrow" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.646447C0.841709 0.451184 1.15829 0.451184 1.35355 0.646447L7.35355 6.64645C7.54882 6.84171 7.54882 7.15829 7.35355 7.35355L1.35355 13.3536C1.15829 13.5488 0.841709 13.5488 0.646447 13.3536C0.451184 13.1583 0.451184 12.8417 0.646447 12.6464L6.29289 7L0.646447 1.35355C0.451184 1.15829 0.451184 0.841709 0.646447 0.646447Z" fill="#414141"/>
+                  </svg>
+              li.bread-crumbs__link-block.link-block
+                a.link-block__link Корзина
+            
+            .top-content__title-block.top-title-block
+              h2.basket__title.top-title.soft
+                | Корзина
+                span.basket__title-count.basket-count
+
+          .basket__content
+            .basket__actions.basket-actions
+              button.basket-actions__fill-all.basket-actions__action.basket-action.fill-all
+                <svg class="basket-action__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3 8.00001C3 7.81591 3.14924 7.66667 3.33333 7.66667H12.6667C12.8508 7.66667 13 7.81591 13 8.00001C13 8.1841 12.8508 8.33334 12.6667 8.33334H3.33333C3.14924 8.33334 3 8.1841 3 8.00001Z" fill="white"/>
+                </svg>
+
+                span.basket-action__text Выделить всё
+
+              button.basket-actions__delete-selected.basket-actions__action.basket-action.delete-selected
+                span.basket-action__text Удалить выбранные
+
+            .basket__grid
+              //- Блок с товарами
+              .basket__products.basket-products
+                .basket-product.shop-item(tabindex="0")
+                  .basket-product__row
+                    .basket-product__info
+                      .basket-product__image
+                        .basket-product__is-selected
+                          <svg class="selected-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5692 4.43096C13.6994 4.56114 13.6994 4.77219 13.5692 4.90237L6.23587 12.2357C6.10569 12.3659 5.89464 12.3659 5.76446 12.2357L2.43113 8.90237C2.30095 8.77219 2.30095 8.56114 2.43113 8.43096C2.5613 8.30079 2.77236 8.30079 2.90253 8.43096L6.00016 11.5286L13.0978 4.43096C13.228 4.30079 13.439 4.30079 13.5692 4.43096Z" fill="white"/>
+                            </svg>
+
+                        img(src="./images/basket-product-1.png" alt="продукт")
+
+                      .basket-product__text
+                        h3.basket-product__title Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                        .basket-product__prices-quantity
+                          .basket-product__price-quantity.price-quantity.best-price
+                              span.price-quantity__price 44,50 ₽ #[strong.quantity за шт]
+
+                    .basket-product__price-block
+                      .manipulate-with-basket.to-basket-btn
+                        button.manipulate-with-basket__decrease.basket-decrease
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+
+                        span.manipulate-with-basket__count 1
+
+                        button.manipulate-with-basket__update.basket-update
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+                      .basket-product__prices
+                        .basket-product__price.basket-product__price_now 89,00 ₽
+
+                .basket-product.shop-item(tabindex="0")
+                  .basket-product__row
+                    .basket-product__info
+                      .basket-product__image
+                        .basket-product__is-selected
+                          <svg class="selected-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5692 4.43096C13.6994 4.56114 13.6994 4.77219 13.5692 4.90237L6.23587 12.2357C6.10569 12.3659 5.89464 12.3659 5.76446 12.2357L2.43113 8.90237C2.30095 8.77219 2.30095 8.56114 2.43113 8.43096C2.5613 8.30079 2.77236 8.30079 2.90253 8.43096L6.00016 11.5286L13.0978 4.43096C13.228 4.30079 13.439 4.30079 13.5692 4.43096Z" fill="white"/>
+                            </svg>
+                        img(src="./images/basket-product-1.png" alt="продукт")
+
+                      .basket-product__text
+                        h3.basket-product__title Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                        .basket-product__prices-quantity
+                          .basket-product__price-quantity.price-quantity.best-price
+                            span.price-quantity__price 44,50 ₽
+                            span.price-quantity__text С картой
+                            
+                          .basket-product__price-quantity.price-quantity.bad-price
+                            span.price-quantity__price 50,50 ₽ #[strong.quantity за шт]
+                            span.price-quantity__text Обычная
+
+                          .product-discount.basket-product__discount -10%
+
+
+                    .basket-product__price-block
+                      .manipulate-with-basket.to-basket-btn
+                        button.manipulate-with-basket__decrease.basket-decrease
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+
+                        span.manipulate-with-basket__count 2
+
+                        button.manipulate-with-basket__update.basket-update
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+                      .basket-product__prices
+                        .basket-product__price.basket-product__price_now 80,10 ₽
+                        .basket-product__price.basket-product__price_old 89,00 ₽
+
+                .basket-product.shop-item(tabindex="0")
+                  .basket-product__row
+                    .basket-product__info
+                      .basket-product__image
+                        .basket-product__is-selected
+                          <svg class="selected-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5692 4.43096C13.6994 4.56114 13.6994 4.77219 13.5692 4.90237L6.23587 12.2357C6.10569 12.3659 5.89464 12.3659 5.76446 12.2357L2.43113 8.90237C2.30095 8.77219 2.30095 8.56114 2.43113 8.43096C2.5613 8.30079 2.77236 8.30079 2.90253 8.43096L6.00016 11.5286L13.0978 4.43096C13.228 4.30079 13.439 4.30079 13.5692 4.43096Z" fill="white"/>
+                            </svg>
+                        img(src="./images/basket-product-1.png" alt="продукт")
+
+                      .basket-product__text
+                        h3.basket-product__title Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                        .basket-product__prices-quantity
+                          .basket-product__price-quantity.price-quantity.best-price
+                              span.price-quantity__price 44,50 ₽ #[strong.quantity за шт]
+
+                    .basket-product__price-block
+                      .manipulate-with-basket.to-basket-btn
+                        button.manipulate-with-basket__decrease.basket-decrease
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+
+                        span.manipulate-with-basket__count 2
+
+                        button.manipulate-with-basket__update.basket-update
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                          </svg>
+                      .basket-product__prices
+                        .basket-product__price.basket-product__price_now 89,00 ₽
+
+                .basket-product.shop-item.not-available(tabindex="0")
+                  .basket-product__row
+                    .basket-product__info
+                      .basket-product__image
+                        .basket-product__is-selected
+                          <svg class="selected-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5692 4.43096C13.6994 4.56114 13.6994 4.77219 13.5692 4.90237L6.23587 12.2357C6.10569 12.3659 5.89464 12.3659 5.76446 12.2357L2.43113 8.90237C2.30095 8.77219 2.30095 8.56114 2.43113 8.43096C2.5613 8.30079 2.77236 8.30079 2.90253 8.43096L6.00016 11.5286L13.0978 4.43096C13.228 4.30079 13.439 4.30079 13.5692 4.43096Z" fill="white"/>
+                            </svg>
+                        img(src="./images/basket-product-1.png" alt="продукт")
+
+                      .basket-product__text
+                        h3.basket-product__title Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                        .basket-product__prices-quantity
+                          .basket-product__price-quantity.price-quantity.best-price
+                              span.price-quantity__price 44,50 ₽ #[strong.quantity за шт]
+
+                    .basket-product__price-block.not-available__text-block
+                      span.not-available__text Нет в наличии
+
+              //- Блок с информацией о покупке
+              .basket__info.basket-info
+                .basket-info__area.basket-info__add-card-sum.add-card-sum
+                  .add-card-sum__radio.checkbox-radio-block
+                    label.checkbox-radio-block__label
+                      input.checkbox-radio-block__checkbox-radio-input(type="checkbox" checked)
+                      span.checkbox-radio-block__checkbox-radio.custom-checkbox-radio
+                        span.custom-checkbox-radio__row
+                          span.custom-checkbox-radio__circle
+
+                      span.checkbox-radio-block__text Списать 200 ₽
+                  span.add-card-sum__notice На карте накоплено #[span 200] ₽ 
+
+                .basket-info__area.basket-info__count-promotion.count-promotion
+                  .count-promotion__block.count-promotion__count.basket-count
+                    .count-promotion__name.basket-count__counter
+                      | #[span.basket-count__counter-text 3] товара
+                    .count-promotion__value.basket-count__price 258,10  ₽
+
+                  .count-promotion__block.count-promotion__promotion.basket-promotion
+                    .count-promotion__name.basket-promotion__text Скидка
+                    .count-promotion__value.basket-promotion__discount -8,01  ₽
+
+                .basket-info__area.basket-info__result.basket-result
+                  .basket-result__line
+                    span.basket-result__name Итог
+                    span.basket-result__value 250,09 ₽
+                  
+                  .basket-notice
+                    <svg class="basket-notice__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M23.1883 6.66661H0.811961C0.343143 6.66661 -0.0396916 7.05823 0.0033005 7.52051C0.494639 13.0113 5.67826 17.3333 12.0001 17.3333C18.322 17.3333 23.5056 13.0133 23.997 7.52051C24.0379 7.05823 23.6571 6.66661 23.1883 6.66661Z" fill="#70C05B"/>
+                    </svg>
+                    span Вы получаете #[b 10 бонусов]
+
+                  .basket-result__get-order-block.get-order
+                    .get-order__notice Минимальная сумма заказа 1000р
+                    button.get-order__btn.orange-btn Оформить заказ

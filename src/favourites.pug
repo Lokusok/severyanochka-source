@@ -1,0 +1,587 @@
+extends includes/base
+
+block variables
+  -
+    var pageTitle = 'Избранное | Северяночка'
+    var logoIsIndexLink = true
+
+block userVar
+  -
+    var user = {
+      login: false
+    }
+
+block activeNavVar
+  -
+    var active = {
+      catalog: false,
+      favourites: true,
+      orders: false,
+      basket: false
+    }
+
+
+block content
+  main.main
+    section.category-section
+      .container.category-section__container
+        .category-section__row
+          .top-content
+            ul.top-content__bread-crumbs.bread-crumbs
+              li.bread-crumbs__link-block.link-block
+                a.link-block__link(href="./index.html") Главная
+                .link-block__arrow
+                  <svg class="bread-crumbs__link-arrow" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.646447C0.841709 0.451184 1.15829 0.451184 1.35355 0.646447L7.35355 6.64645C7.54882 6.84171 7.54882 7.15829 7.35355 7.35355L1.35355 13.3536C1.15829 13.5488 0.841709 13.5488 0.646447 13.3536C0.451184 13.1583 0.451184 12.8417 0.646447 12.6464L6.29289 7L0.646447 1.35355C0.451184 1.15829 0.451184 0.841709 0.646447 0.646447Z" fill="#414141"/>
+                  </svg>
+              li.bread-crumbs__link-block.link-block
+                a.link-block__link Избранное
+
+            .top-content__title-block.top-title-block
+              h2.category-section__title.top-title.soft Избранное
+          
+          .category-section__content.category-content
+            .category-content__row
+              button.category-content__activate-mobile-filters.activate-mobile-filters(type="button") 
+                | Фильтр
+
+              ul.category-content__tags.category-tags
+                li.category-tags__tag Товары нашего производства
+                li.category-tags__tag Полезное питание
+                li.category-tags__tag Без ГМО
+
+              .category-content__main
+                //- Настройки
+                .category-content__options.options
+                  .options__row
+                    .options__title Фильтр
+
+                    .options__price-filter.price-filter
+                      .price-filter__head
+                        span.price-filter__text Цена
+                        button.price-filter__reset(type="button") Очистить
+                      .price-filter__inputs-pair
+                        input.price-filter__input.price-filter__start(type="number")
+                        <svg class="price-filter__inputs-pair-separator" width="16" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 1C0.5 0.723858 0.723858 0.5 1 0.5H15C15.2761 0.5 15.5 0.723858 15.5 1C15.5 1.27614 15.2761 1.5 15 1.5H1C0.723858 1.5 0.5 1.27614 0.5 1Z" fill="#414141"/>
+                        </svg>
+                        input.price-filter__input.price-filter__end(type="number")
+                      .price-filter__range-block
+                        .price-filter__range
+
+                    ul.options__additional-products.additional-products
+                      li.additional-products__item
+                        a.additional-products__link(href="#") Молоко
+                      li.additional-products__item
+                        a.additional-products__link(href="#") Сливки
+                      li.additional-products__item
+                        a.additional-products__link(href="#") Яйцо
+
+                    .options__checkbox-radio-block.checkbox-radio-block
+                      label.checkbox-radio-block__label
+                        input.checkbox-radio-block__checkbox-radio-input(type="checkbox" checked)
+                        span.checkbox-radio-block__checkbox-radio.custom-checkbox-radio
+                          span.custom-checkbox-radio__row
+                            span.custom-checkbox-radio__circle
+
+                        span.checkbox-radio-block__text В наличии
+                    
+                    .options-accept-block.options-accept
+                      button.options-accept__button(type="button") Применить
+
+                //- Содержимое категории товаров
+                .category-content__main-content.category-main-content
+                  .category-main-content__row
+                    ul.category-main-content__filters.accepted-filters
+                      li.accepted-filters__item.filter-in-stock
+                        button.accepted-filters__filter.accepted-filter.active(type="button")
+                          span.accepted-filter__text В наличии
+                          <svg class="accepted-filter__close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3536 5.64645C18.5488 5.84171 18.5488 6.15829 18.3536 6.35355L6.35355 18.3536C6.15829 18.5488 5.84171 18.5488 5.64645 18.3536C5.45118 18.1583 5.45118 17.8417 5.64645 17.6464L17.6464 5.64645C17.8417 5.45118 18.1583 5.45118 18.3536 5.64645Z" fill="#414141"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.64645 5.64645C5.84171 5.45118 6.15829 5.45118 6.35355 5.64645L18.3536 17.6464C18.5488 17.8417 18.5488 18.1583 18.3536 18.3536C18.1583 18.5488 17.8417 18.5488 17.6464 18.3536L5.64645 6.35355C5.45118 6.15829 5.45118 5.84171 5.64645 5.64645Z" fill="#414141"/>
+                          </svg>
+
+                      li.accepted-filters__item.filter-price
+                        button.accepted-filters__filter.accepted-filter.active(type="button")
+                          span.accepted-filter__text Цена от 99 до 2599
+                          <svg class="accepted-filter__close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3536 5.64645C18.5488 5.84171 18.5488 6.15829 18.3536 6.35355L6.35355 18.3536C6.15829 18.5488 5.84171 18.5488 5.64645 18.3536C5.45118 18.1583 5.45118 17.8417 5.64645 17.6464L17.6464 5.64645C17.8417 5.45118 18.1583 5.45118 18.3536 5.64645Z" fill="#414141"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.64645 5.64645C5.84171 5.45118 6.15829 5.45118 6.35355 5.64645L18.3536 17.6464C18.5488 17.8417 18.5488 18.1583 18.3536 18.3536C18.1583 18.5488 17.8417 18.5488 17.6464 18.3536L5.64645 6.35355C5.45118 6.15829 5.45118 5.84171 5.64645 5.64645Z" fill="#414141"/>
+                          </svg>
+
+                      li.accepted-filters__item.reset-filters
+                        button.accepted-filters__filter.accepted-filter.reset-filters__btn(type="button")
+                          span.accepted-filter__text Очистить фильтры
+                          <svg class="accepted-filter__close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3536 5.64645C18.5488 5.84171 18.5488 6.15829 18.3536 6.35355L6.35355 18.3536C6.15829 18.5488 5.84171 18.5488 5.64645 18.3536C5.45118 18.1583 5.45118 17.8417 5.64645 17.6464L17.6464 5.64645C17.8417 5.45118 18.1583 5.45118 18.3536 5.64645Z" fill="#414141"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.64645 5.64645C5.84171 5.45118 6.15829 5.45118 6.35355 5.64645L18.3536 17.6464C18.5488 17.8417 18.5488 18.1583 18.3536 18.3536C18.1583 18.5488 17.8417 18.5488 17.6464 18.3536L5.64645 6.35355C5.45118 6.15829 5.45118 5.84171 5.64645 5.64645Z" fill="#414141"/>
+                          </svg>
+
+                    .shop__line.shop-line.category-line
+                      .shop-line__content.category-line__content
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-7.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 139,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-2.png" alt="product")
+                                .product-discount.shop-card__discount -50%
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 69,99 ₽
+                                    span.price__text С картой
+
+                                  p.shop-card__big-price.price.big-price 140,50 ₽
+                                    span.price__text Обычная
+
+                                .shop-card__bottom
+                                  p.shop-card__about Молоко ПРОСТОКВАШИНО паст. питьевое цельное отборное ...
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-half
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-8.png" alt="product")
+                                .product-discount.shop-card__discount -50%
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 77,99 ₽
+                                    span.price__text С картой
+
+                                  p.shop-card__big-price.price.big-price 168,50 ₽
+                                    span.price__text Обычная
+
+                                .shop-card__bottom
+                                  p.shop-card__about Молоко сгущенное РОГАЧЕВ Егорка, цельное с сахаром...
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-half
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-9.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 139,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-11.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 29,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>              
+                                
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-7.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 139,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-2.png" alt="product")
+                                .product-discount.shop-card__discount -50%
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 69,99 ₽
+                                    span.price__text С картой
+
+                                  p.shop-card__big-price.price.big-price 140,50 ₽
+                                    span.price__text Обычная
+
+                                .shop-card__bottom
+                                  p.shop-card__about Молоко ПРОСТОКВАШИНО паст. питьевое цельное отборное ...
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-half
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-8.png" alt="product")
+                                .product-discount.shop-card__discount -50%
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 77,99 ₽
+                                    span.price__text С картой
+
+                                  p.shop-card__big-price.price.big-price 168,50 ₽
+                                    span.price__text Обычная
+
+                                .shop-card__bottom
+                                  p.shop-card__about Молоко сгущенное РОГАЧЕВ Егорка, цельное с сахаром...
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-half
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-9.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 139,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                        .shop-line__card.shop-card.shop-item
+                          .shop-card__content
+                            a.shop-card__link(href="./product.html" aria-label="карточка товара")
+                              .shop-card__image
+                                img(src="./images/product-11.png" alt="product")
+              
+                              .shop-card__description
+                                .shop-card__top
+                                  p.shop-card__small-price.price.small-price 29,99 ₽
+
+                                .shop-card__bottom
+                                  p.shop-card__about Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»
+                                  .shop-card__raiting.raiting
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-filled
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+                                    include includes/svg/star-empty
+
+                            button.shop-card__favourite.to-favourite(type="button")
+                              <svg class="to-favourite__icon" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7046 2.25644C12.8299 1.13067 14.3564 0.498169 15.9482 0.498169C17.5399 0.498169 19.0664 1.13063 20.1916 2.25636C21.3174 3.38164 21.95 4.90829 21.95 6.49999C21.95 8.09174 21.3175 9.61826 20.1917 10.7435C20.1917 10.7436 20.1917 10.7435 20.1917 10.7435L11.3517 19.5835C11.1565 19.7788 10.8399 19.7788 10.6446 19.5835L1.80461 10.7435C-0.539037 8.3999 -0.539037 4.60009 1.80461 2.25644C4.14826 -0.0872086 7.94807 -0.0872087 10.2917 2.25644L10.9982 2.96289L11.7046 2.25644C11.7046 2.25641 11.7046 2.25647 11.7046 2.25644ZM15.9482 1.49817C14.6217 1.49817 13.3496 2.02528 12.4118 2.96346L11.3517 4.02355C11.258 4.11732 11.1308 4.16999 10.9982 4.16999C10.8656 4.16999 10.7384 4.11732 10.6446 4.02355L9.58461 2.96355C7.63149 1.01042 4.46484 1.01042 2.51172 2.96355C0.558594 4.91667 0.558594 8.08332 2.51172 10.0364L10.9982 18.5229L19.4846 10.0364C20.4228 9.09869 20.95 7.82648 20.95 6.49999C20.95 5.17351 20.4229 3.90138 19.4847 2.96363C18.5469 2.02544 17.2747 1.49817 15.9482 1.49817Z" fill="#414141"/>
+                              </svg>
+
+                            button.shop-card__to-basket.to-basket-btn(type="button") В корзину
+
+                            .shop-card__manipulate-with-basket.manipulate-with-basket
+                              button.manipulate-with-basket__decrease.basket-decrease
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>
+
+                              span.manipulate-with-basket__count
+
+                              button.manipulate-with-basket__update.basket-update
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C12.2761 4.5 12.5 4.72386 12.5 5V19C12.5 19.2761 12.2761 19.5 12 19.5C11.7239 19.5 11.5 19.2761 11.5 19V5C11.5 4.72386 11.7239 4.5 12 4.5Z" fill="white"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 12C4.5 11.7239 4.72386 11.5 5 11.5H19C19.2761 11.5 19.5 11.7239 19.5 12C19.5 12.2761 19.2761 12.5 19 12.5H5C4.72386 12.5 4.5 12.2761 4.5 12Z" fill="white"/>
+                                </svg>                    
+
+                      button.category-line__more(type="button") Показать ещё
+
+                      .category-line__pagination.pagination
+                        .pagination__row
+                          .pagination__content
+                            .pagination__back-block.pagination__back-block-left
+                              .pagination__back.pagination__doubleback
+                                <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.35355 0.646447C6.54882 0.841709 6.54882 1.15829 6.35355 1.35355L1.70711 6L6.35355 10.6464C6.54882 10.8417 6.54882 11.1583 6.35355 11.3536C6.15829 11.5488 5.84171 11.5488 5.64645 11.3536L0.646447 6.35355C0.451184 6.15829 0.451184 5.84171 0.646447 5.64645L5.64645 0.646447C5.84171 0.451184 6.15829 0.451184 6.35355 0.646447Z" fill="#414141"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3536 0.646447C13.5488 0.841709 13.5488 1.15829 13.3536 1.35355L8.70711 6L13.3536 10.6464C13.5488 10.8417 13.5488 11.1583 13.3536 11.3536C13.1583 11.5488 12.8417 11.5488 12.6464 11.3536L7.64645 6.35355C7.45118 6.15829 7.45118 5.84171 7.64645 5.64645L12.6464 0.646447C12.8417 0.451184 13.1583 0.451184 13.3536 0.646447Z" fill="#414141"/>
+                                </svg>
+
+                              .pagination__back
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35355 0.646447C7.54882 0.841709 7.54882 1.15829 7.35355 1.35355L1.70711 7L7.35355 12.6464C7.54882 12.8417 7.54882 13.1583 7.35355 13.3536C7.15829 13.5488 6.84171 13.5488 6.64645 13.3536L0.646447 7.35355C0.451184 7.15829 0.451184 6.84171 0.646447 6.64645L6.64645 0.646447C6.84171 0.451184 7.15829 0.451184 7.35355 0.646447Z" fill="#414141"/>
+                                </svg>
+
+                            ul.pagination-list
+                              li.pagination-list__item
+                                a.pagination-list__link.active(href="#") 1
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 2
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 3
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 4
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 5
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 6
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 7
+                              li.pagination-list__item
+                                a.pagination-list__link(href="#") 8
+
+                            .pagination__back-block.pagination__back-block-right
+                              .pagination__back.pagination__doubleback
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6464 6.64645C12.8417 6.45118 13.1583 6.45118 13.3536 6.64645L18.3536 11.6464C18.5488 11.8417 18.5488 12.1583 18.3536 12.3536L13.3536 17.3536C13.1583 17.5488 12.8417 17.5488 12.6464 17.3536C12.4512 17.1583 12.4512 16.8417 12.6464 16.6464L17.2929 12L12.6464 7.35355C12.4512 7.15829 12.4512 6.84171 12.6464 6.64645Z" fill="#414141"/>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.64645 6.64645C5.84171 6.45118 6.15829 6.45118 6.35355 6.64645L11.3536 11.6464C11.5488 11.8417 11.5488 12.1583 11.3536 12.3536L6.35355 17.3536C6.15829 17.5488 5.84171 17.5488 5.64645 17.3536C5.45118 17.1583 5.45118 16.8417 5.64645 16.6464L10.2929 12L5.64645 7.35355C5.45118 7.15829 5.45118 6.84171 5.64645 6.64645Z" fill="#414141"/>
+                                </svg>
+
+                              .pagination__back
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.646447 0.646447C0.841709 0.451184 1.15829 0.451184 1.35355 0.646447L7.35355 6.64645C7.54882 6.84171 7.54882 7.15829 7.35355 7.35355L1.35355 13.3536C1.15829 13.5488 0.841709 13.5488 0.646447 13.3536C0.451184 13.1583 0.451184 12.8417 0.646447 12.6464L6.29289 7L0.646447 1.35355C0.451184 1.15829 0.451184 0.841709 0.646447 0.646447Z" fill="#414141"/>
+                                </svg>

@@ -1,0 +1,70 @@
+@use 'vars' as vars;
+
+@mixin hoverOnBasketBtn($opacity: 1) {
+  border-color: vars.$color-accent-1;
+  background: rgba(vars.$color-accent-1, $opacity);
+  color: #fff;
+}
+
+@mixin hoverOnFavouriteBtn($opacity: 1) {
+  background: rgba(vars.$color-accent-4, $opacity);
+  svg path { fill: vars.$color-text; }
+}
+
+@mixin greyAdvantage() {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: default;
+  background: vars.$color-accent-5;
+  padding: 8px 24px;
+  border-radius: 4px;
+  border: none;
+  white-space: nowrap;
+}
+
+@mixin hideAllSetOneBackBtn() {
+  .label-password {
+    display: none;
+  }
+
+  .go-register,
+  .reset-password-btn {
+    display: none;
+  }
+
+  .step-back {
+    display: flex;
+  }
+
+  .popup-login__ways {
+    justify-content: center;
+  }
+}
+
+@mixin softTitle() {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 96px;
+
+  @media (max-width: 860px) {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+  }
+}
+
+@mixin defaultTitle() {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 54px;
+
+  &.soft {
+    @include softTitle();
+  }
+  
+  @media (max-width: 510px) {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
